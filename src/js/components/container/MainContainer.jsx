@@ -42,10 +42,11 @@ render() {
         });
     } else {
         let keys = Object.keys(this.props.items)
-        keys.forEach((cur,ind)=>{
+        console.log(this.props.items)
+        this.props.items.data.children.forEach((cur,ind)=>{
             arr.push(
-                <li key={ind}>
-                    {JSON.stringify(cur)}
+                <li key={ind} >
+                    <a href={JSON.stringify(cur.data.url)}>{JSON.stringify(cur.data.title)}</a>
                 </li>
             )
         });
