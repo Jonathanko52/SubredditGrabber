@@ -43,7 +43,6 @@ export function itemsFetchData(url) {
                 return response.json()
             })
             .then((items) => {
-                console.log('RESPONSE ITEMS', items)
                 return dispatch(itemsFetchDataSuccess(items))})
             .catch(() => dispatch(itemsHasErrored(true)));
     };

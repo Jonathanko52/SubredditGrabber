@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { itemsFetchData } from '../../../actions/items'
+import { itemsFetchData } from '../../../actions/actions'
 import Input from "../presentational/Input.jsx";
 
 const mapStateToProps = (state) => {
@@ -31,13 +31,35 @@ render() {
     if (this.props.isLoading) {
         return <p>Loading…</p>;
     }
+    let arr=[];
+    if(Array.isArray(this.props.items)){
+        this.props.items.forEach((cur,ind)=>{
+            arr.push(
+                <li key={ind}>
+                    {JSON.stringify(cur)}
+                </li>
+            )
+        });
+    } else {
+        let keys = Object.keys(this.props.items)
+        keys.forEach((cur,ind)=>{
+            arr.push(
+                <li key={ind}>
+                    {JSON.stringify(cur)}
+                </li>
+            )
+        });
+
+    }
+
     return (
         <ul>
-            {this.props.items.map((item) => (
+            {arr}
+            {/* {this.props.items.map((item) => (
                 <li key={item.id}>
                     {JSON.stringify(item)}
                 </li>
-            ))}
+            ))} */}
         </ul>
     );
 }
